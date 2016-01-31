@@ -1,0 +1,80 @@
+
+---
+output: 
+  pdf_document
+
+header-includes:
+	\usepackage{tikz}
+	\usepackage[european]{circuitikz}
+---
+
+#Knotenpunktregel
+##Beispiel 2
+
+Für den untenstehenden Knoten ist der zeitliche Verlauf der drei Ströme $I_1 = f(t)$, $I_2 = f(t)$ und $I_3 = f(t)$ bekannt.
+Zeichne den fehlenden Strom $I_4$ auf.\
+
+\begin{tikzpicture}
+	\draw 
+	(0,0) to[short, i=$i_1$, -*] (2,0)
+	(2,0) to[short, i=$i_2$] (4,0)
+	(2,2) to[short, i=$i_3$] (2,0)
+	(2,0) to[short, i=$i_4$] (2,-2);
+\end{tikzpicture}
+
+```{r kirchhoff_2, fig.height=6, fig.cap="Stromverlauf", echo=FALSE, dev='png', dpi=600}
+source("func.r")
+
+# variables
+xmin <- 0
+xmax <- 6
+ymin <- -2
+ymax <- 2
+xax <- seq(xmin, xmax, 1)
+yax <- seq(ymin, ymax, 0.5)
+
+# create a grid of the following plots
+par(mfrow=c(2,2))
+
+# use different colors for the plots
+colors <- rainbow(4)
+
+# create vectors to plot
+x <- seq(xmin, xmax, 0.01)
+i1 <- rect(x, 2, -2, 1)
+i2 <- saw2(x)
+i3 <- rect(x, -1, 1, 1)
+
+#dev.new()
+
+# plot the various currents
+#plot(saw2(x), type='l', frame=FALSE, col=colors[1])
+plot(x, i1, type='s', frame=FALSE, col=colors[1], main=expression('I'[1]),
+	 xlab='t [s]', ylab='I [A]', axes=FALSE, ylim=c(ymin, ymax), lwd=2,
+	 panel.first = c(abline(h=yax, col='grey', lwd=1, lty='dashed'),
+					 abline(v=xax, col='grey', lwd=1, lty='dashed')))
+axis(side=1, at=c(xmin:xmax))
+axis(side=2, at=seq(ymin, ymax, 1))
+
+plot(x, i2, type='s', frame=FALSE, col=colors[2], main=expression('I'[2]),
+	 xlab='t [s]', ylab='I [A]', axes=FALSE, ylim=c(ymin, ymax), lwd=2,
+	 panel.first = c(abline(h=yax, col='grey', lwd=1, lty='dashed'),
+					 abline(v=xax, col='grey', lwd=1, lty='dashed')))
+axis(side=1, at=c(xmin:xmax))
+axis(side=2, at=seq(ymin, ymax, 1))
+
+plot(x, i3, type='s', frame=FALSE, col=colors[3], main=expression('I'[3]),
+	 xlab='t [s]', ylab='I [A]', axes=FALSE, ylim=c(ymin, ymax), lwd=2,
+	 panel.first = c(abline(h=yax, col='grey', lwd=1, lty='dashed'),
+					 abline(v=xax, col='grey', lwd=1, lty='dashed')))
+axis(side=1, at=c(xmin:xmax))
+axis(side=2, at=seq(ymin, ymax, 1))
+
+# set type to 'n' to hide this graph
+plot(x, i1-i2+i3, type='n', frame=FALSE, col=colors[4], main=expression('I'[4]),
+	 xlab='t [s]', axes=FALSE, ylab='I [A]', ylim=c(ymin, ymax), lwd=2,
+	 panel.first = c(abline(h=yax, col='grey', lwd=1, lty='dashed'),
+					 abline(v=xax, col='grey', lwd=1, lty='dashed')))
+axis(side=1, at=c(xmin:xmax))
+axis(side=2, at=seq(ymin, ymax, 1))
+```
