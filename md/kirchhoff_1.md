@@ -22,4 +22,5 @@ Zeichne den fehlenden Strom $I_4$ auf.\
 	(2,2) to[short, i=$i_3$] (4,4)
 	(2,2) to[short, i=$i_4$] (5,2);
 \end{tikzpicture}
+
 ![Stromverlauf](figure/kirchhoff_1-1.png)

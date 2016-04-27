@@ -54,6 +54,10 @@ $if(geometry)$
 $endif$
 \makeatletter
 \@ifpackageloaded{hyperref}{}{%
+% no caption for figures
+\usepackage{caption}
+\DeclareCaptionLabelFormat{nolabel}{}
+\captionsetup{labelformat=nolabel}
 \ifxetex
   \usepackage[setpagesize=false, % page size defined by xetex
               unicode=false, % unicode breaks when used with xetex
@@ -187,8 +191,8 @@ $endfor$
 \pagestyle{fancy}
 \usepackage{graphicx}
 \fancyhead[L]{\includegraphics[width=6mm]{../../img/gibs.png} Gewerblich Industrielle Berufsschule Solothurn}
-\fancyhead[R]{Elt1a}
-\fancyfoot[L]{$doc-title$}
+\fancyhead[R]{$gibs-class$}
+\fancyfoot[L]{$title$}
 \fancyfoot[R]{© Andreatta}
 \renewcommand{\footrulewidth}{0.4pt}
 % ------------------------------------------------------------------------------
