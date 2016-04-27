@@ -10,6 +10,7 @@ header-includes:
 ---
 
 #Knotenpunktregel
+
 ##Beispiel 1
 
 Für den untenstehenden Knoten ist der zeitliche Verlauf der drei Ströme $I_1 = f(t)$, $I_2 = f(t)$ und $I_3 = f(t)$ bekannt.
@@ -68,8 +69,8 @@ plot(x, i3, type='s', frame=FALSE, col=colors[3], main=expression('I'[3]),
 axis(side=1, at=c(xmin:xmax))
 axis(side=2, at=seq(ymin, ymax, 1))
 
-# set type to 'n' to hide this graph
-plot(x, i1-i2-i3, type='n', frame=FALSE, col=colors[4], main=expression('I'[4]),
+# set type to 'n' to hide this graph, 's' to show it
+plot(x, i1-i2-i3, type='s', frame=FALSE, col=colors[4], main=expression('I'[4]),
 	 xlab='t [s]', axes=FALSE, ylab='I [A]', ylim=c(ymin, ymax),
 	 panel.first = c(abline(h=yax, col='grey', lwd=1, lty='dashed'),
 					 abline(v=xax, col='grey', lwd=1, lty='dashed')))
